@@ -1,0 +1,12 @@
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("sw.js")
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
+
+
+
+<!-- python3 -m http.server 8080
+http://localhost:8080 -->
