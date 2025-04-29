@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Service Worker Test</title>
+  </head>
+  <body>
+    <h1>PWA Event Test</h1>
+    <button onclick="triggerSync()">Trigger Sync</button>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").then((reg) => {
+          console.log("Service Worker Registered");
+
+          // Optional: Wait a few seconds, then register sync
+          window.triggerSync = async () => {
+            if ("sync" in reg) {
+              try {
+                await reg.sync.register("sync-tag");
+                console.log("Sync registered");
+              } catch (err) {
+                console.error("Sync registration failed", err);
+              }
+            } else {
+              console.warn("Background Sync not supported");
+            }
+          };
+        });
+      }
+    </script>
+  </body>
+</html>
+
+
+<!-- python3 -m http.server 8080
+http://localhost:8080 -->
